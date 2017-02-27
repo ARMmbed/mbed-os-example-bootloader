@@ -1,26 +1,25 @@
-# Getting started with Bootloader Blinky on mbed OS
+# Getting started with bootloader on mbed OS
 
-This example shows how to build and use an application with a pre-built bootloader.
-For steps on how to create the bootloader see [mbed-os-example-bootloader](https://github.com/ARMmbed/mbed-os-example-bootloader)
+This example shows how to build and use an application with a prebuilt bootloader. For steps on how to create the bootloader, see [mbed-os-example-bootloader](https://github.com/ARMmbed/mbed-os-example-bootloader).
 
 ## Required hardware
-* A supported board - [K64F](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/)
-* CI Test shield
-* SD card
+* A supported board - [u-blox EVK-ODIN-W2](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/).
+* CI Test shield.
+* SD card.
 
 ## Import the example application
 
-From the command line, import the example:
+From the command-line, import the example:
 
 ```
 mbed import mbed-os-example-bootloader-blinky
 cd mbed-os-example-bootloader-blinky
 ```
 
-## Setup application to be a bootloader
+## Set up application to be a bootloader
 
-All supported boards mentioned above are set up to build as a bootloader image. To
-add support for a new board the size of the bootloader must be specified in mbed_app.json:
+All supported boards mentioned above are set up to build as a bootloader image. To add support for a new board the size of the bootloader must be specified in mbed_app.json:
+
 ```
     "target_overrides": {
         ...
@@ -30,18 +29,18 @@ add support for a new board the size of the bootloader must be specified in mbed
         ...
 ```
 
-Note - ``restrict_size`` pads the build image to the requested size.
+Note - `restrict_size` pads the build image to the requested size.
 
 
 ## Now compile
 
-Invoke `mbed compile` specifying the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
+Invoke `mbed compile`, and specify the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
 
 ```
 mbed compile -m NUCLEO_F429ZI -t ARM
 ```
 
-Your PC may take a few minutes to compile your code. At the end you should get the following result:
+Your PC may take a few minutes to compile your code. At the end, you see the following result:
 
 ```
 Merging Regions:
@@ -74,24 +73,20 @@ Image: .\BUILD\NUCLEO_F429ZI\ARM\mbed-os-example-bootloader.bin
 
 ## Next steps
 
-If the build succeeds then you successfuly created a bootloader for your target.
-The next step is to build an application which you can combine with your bootloader
-to create a loadable image. A simple blinky application which makes use of this
-bootloader can be found in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky)
-project.
+When the build succeeds, you have created a bootloader for your target. The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
 
 ## Troubleshooting
 
-1. Make sure `mbed-cli` is working correctly and its version is `>1.0.0`
+1. Make sure `mbed-cli` is working correctly and its version is `>1.0.0`.
 
- ```
- mbed --version
- ```
+    ```
+    mbed --version
+    ```
 
- If not, you can update it easily:
+ If not, you can update it:
 
- ```
- pip install mbed-cli --upgrade
- ```
+    ```
+    pip install mbed-cli --upgrade
+    ```
 
-2. If using Keil MDK, make sure you have a license installed. [MDK-Lite](http://www.keil.com/arm/mdk.asp) has a 32KB restriction on code size.
+2. If using Keil MDK, make sure you have a license installed. [MDK-Lite](http://www.keil.com/arm/mdk.asp) has a 32 KB restriction on code size.
