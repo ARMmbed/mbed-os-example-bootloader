@@ -72,6 +72,8 @@ Total Flash memory (text + data + misc): 60554 bytes
 Image: .\BUILD\NUCLEO_F429ZI\ARM\mbed-os-example-bootloader.bin
 ```
 
+It creates two binary files. The original uncombined image is in the output directory: <project-name>_application.bin and the bootloader image is <project-name>.bin.
+
 ## Next steps
 
 When the build succeeds, you have created a bootloader for your target. The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
