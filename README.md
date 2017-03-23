@@ -2,6 +2,8 @@
 
 This example shows how to create a bootloader. For steps on how to create an application which uses this bootloader, see [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky).
 
+To read more about the bootloader, please visit [bootloader tutorial](https://docs.mbed.com/docs/mbed-os-handbook/en/latest/advanced/bootloader/).
+
 ## Required hardware
 * A supported board - [u-blox EVK-ODIN-W2](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/).
 * CI Test shield.
