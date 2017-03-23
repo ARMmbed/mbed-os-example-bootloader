@@ -12,8 +12,8 @@ This example shows how to create a bootloader. For steps on how to create an app
 From the command-line, import the example:
 
 ```
-mbed import mbed-os-example-bootloader-blinky
-cd mbed-os-example-bootloader-blinky
+mbed import mbed-os-example-bootloader
+cd mbed-os-example-bootloader
 ```
 
 ## Set up application to be a bootloader
