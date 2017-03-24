@@ -34,7 +34,6 @@ To do this, set the target (replace ``<TARGET_NAME>`` with your target name) val
 
 Note - `restrict_size` pads the build image to the requested size.
 
-
 ## Now compile
 
 Invoke `mbed compile`, and specify the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
@@ -78,7 +77,9 @@ It creates two binary files. The original uncombined image is in the output dire
 
 ## Next steps
 
-When the build succeeds, you have created a bootloader for your target. The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
+When the build succeeds, you have created a bootloader for your target. This bootloader defines the update file to be located at ``"/sd/mbed-os-example-bootloader-blinky_application.bin"``. This is the binary bootloader flashes and then jumps to.
+
+The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
 
 ## Troubleshooting
 
