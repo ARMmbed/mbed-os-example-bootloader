@@ -2,6 +2,8 @@
 
 This example shows how to create a bootloader. For steps on how to create an application which uses this bootloader, see [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky).
 
+To read more about the bootloader, please visit [bootloader tutorial](https://docs.mbed.com/docs/mbed-os-handbook/en/latest/advanced/bootloader/).
+
 ## Required hardware
 * A supported board - [u-blox EVK-ODIN-W2](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/).
 * CI Test shield.
@@ -12,19 +14,19 @@ This example shows how to create a bootloader. For steps on how to create an app
 From the command-line, import the example:
 
 ```
-mbed import mbed-os-example-bootloader-blinky
-cd mbed-os-example-bootloader-blinky
+mbed import mbed-os-example-bootloader
+cd mbed-os-example-bootloader
 ```
 
 ## Set up application to be a bootloader
 
 All supported boards mentioned above are set up to build as a bootloader image. To add support for a new board, you must specify the size of the bootloader.
-To do this, set the target value `restrict_size` to the maximum bootloader size in mbed_app.json:
+To do this, set the target (replace ``<TARGET_NAME>`` with your target name) value `restrict_size` to the maximum bootloader size in mbed_app.json:
 
 ```
     "target_overrides": {
         ...
-        "NUCLEO_F429ZI": {
+        "<TARGET_NAME>": {
             "target.restrict_size": "0x20000"
         },
         ...
@@ -32,20 +34,19 @@ To do this, set the target value `restrict_size` to the maximum bootloader size 
 
 Note - `restrict_size` pads the build image to the requested size.
 
-
 ## Now compile
 
 Invoke `mbed compile`, and specify the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
 
 ```
-mbed compile -m NUCLEO_F429ZI -t ARM
+mbed compile -m <TARGET_NAME> -t ARM
 ```
 
 Your PC may take a few minutes to compile your code. At the end, you see the following result:
 
 ```
 Merging Regions:
-  Filling region application with .\BUILD\NUCLEO_F429ZI\ARM\mbed-os-example-bootloader_application.bin
+  Filling region application with .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader_application.bin
   Padding region application with 0x11420 bytes
 Space used after regions merged: 0x20000
 +-----------------------------+-------+-------+-------+
@@ -69,12 +70,16 @@ Total Static RAM memory (data + bss): 24852 bytes
 Total RAM memory (data + bss + heap + stack): 24852 bytes
 Total Flash memory (text + data + misc): 60554 bytes
 
-Image: .\BUILD\NUCLEO_F429ZI\ARM\mbed-os-example-bootloader.bin
+Image: .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader.bin
 ```
+
+It creates two binary files. The original uncombined image is in the output directory: <project-name>_application.bin and the bootloader image is <project-name>.bin.
 
 ## Next steps
 
-When the build succeeds, you have created a bootloader for your target. The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
+When the build succeeds, you have created a bootloader for your target. This bootloader defines the update file to be located at ``"/sd/mbed-os-example-bootloader-blinky_application.bin"``. This is the binary bootloader flashes and then jumps to.
+
+The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
 
 ## Troubleshooting
 
