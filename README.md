@@ -75,11 +75,48 @@ Image: .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader.bin
 
 It creates two binary files. The original uncombined image is in the output directory: <project-name>_application.bin and the bootloader image is <project-name>.bin.
 
-## Next steps
-
 When the build succeeds, you have created a bootloader for your target. This bootloader defines the update file to be located at ``"/sd/mbed-os-example-bootloader-blinky_application.bin"``. This is the binary bootloader flashes and then jumps to.
 
-The next step is to build an application you can combine with your bootloader to create a loadable image. You can find a blinky application that uses this bootloader in the [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky) project.
+## Set up application to use bootloader
+
+The next step is to build an application you can combine with your bootloader to create a loadable image. 
+
+1. Update your board to use the newly created bootloader image. To do this, set the target (replace ``<TARGET_NAME>`` with your target name) value `bootloader_img` to the file path of the bootloader image.
+
+```
+    "target_overrides": {
+        ...
+        "<TARGET_NAME>": {
+            "target.bootloader_img": "bootloader/<TARGET_NAME>.bin"
+        },
+        ...
+```
+
+2. Invoke `mbed compile`, and specify the name of your platform and the toolchain you are using (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
+
+    ```
+    mbed compile -m <TARGET_NAME> -t ARM
+    ```
+
+### Program bootloader and application
+
+1. Connect your mbed device to the computer over USB.
+1. Copy the application binary file to the mbed device.
+1. Press the reset button to start the program.
+
+### Program application using SD card
+
+1. Connect the SD card to your computer.
+1. Copy the application binary to the root of the SD card.
+1. Remove the SD card from your PC, and plug it into the mbed board.
+1. Press the reset button to start the firmware update.
+
+If a terminal is open, the following prints:
+
+```
+Firmware update found
+Starting application
+```
 
 ## Troubleshooting
 
