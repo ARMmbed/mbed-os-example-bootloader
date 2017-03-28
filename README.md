@@ -1,6 +1,6 @@
 # Getting started with bootloader on mbed OS
 
-This example shows how to create a bootloader. For steps on how to create an application that uses this bootloader, see [mbed-os-example-bootloader-blinky](https://github.com/ARMmbed/mbed-os-example-bootloader-blinky).
+This example shows how to create a bootloader.
 
 To read more about the bootloader, please visit [bootloader tutorial](https://docs.mbed.com/docs/mbed-os-handbook/en/latest/advanced/bootloader/).
 
