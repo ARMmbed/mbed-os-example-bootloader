@@ -2,7 +2,7 @@
 #include "SDBlockDevice.h"
 #include "FATFileSystem.h"
 
-#define UPDATE_FILE     "/sd/mbed-os-example-bootloader-blinky_application.bin"
+#define UPDATE_FILE     "/sd/mbed-os-example-blinky_application.bin"
 
 SDBlockDevice sd(D11, D12, D13, D10);
 FATFileSystem fs("sd");
