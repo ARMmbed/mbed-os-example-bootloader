@@ -76,9 +76,11 @@ Image: .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader.bin
 
 It creates two binary files. The original uncombined image is in the output directory, <project-name>_application.bin, and the bootloader image is <project-name>.bin.
 
-When the build succeeds, you have created a bootloader for your target. This bootloader defines the update file to be located at `/sd/mbed-os-example-bootloader-blinky_application.bin`. This is the binary bootloader flashes and then jumps to.
+When the build succeeds, you have created a bootloader for your target. This example defines the application file to be located at `/sd/mbed-os-example-blinky_application.bin` in the application config file ``mbed_app.json``. This is the application binary bootloader flashes and then jumps to.
 
 ## Set up application to use bootloader
+
+### Program bootloader and application
 
 The next step is to build an application you can combine with your bootloader to create a loadable image. 
 
@@ -99,16 +101,15 @@ The next step is to build an application you can combine with your bootloader to
     mbed compile -m <TARGET_NAME> -t ARM
     ```
 
-### Program bootloader and application
 
 1. Connect your mbed device to the computer over USB.
-1. Copy the application binary file to the mbed device.
+1. Copy the binary file (``<program name.bin>``) to the mbed device.
 1. Press the reset button to start the program.
 
 ### Program application using SD card
 
 1. Connect the SD card to your computer.
-1. Copy the application binary to the root of the SD card.
+1. Copy the application binary (``<program name>_application.bin``, we defined it earlier as ``mbed-os-example-blinky_application.bin``) to the root of the SD card.
 1. Remove the SD card from your PC, and plug it into the mbed board.
 1. Press the reset button to start the firmware update.
 
