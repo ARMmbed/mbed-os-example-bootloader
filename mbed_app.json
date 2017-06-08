@@ -1,13 +1,13 @@
 {
     "target_overrides": {
         "K64F": {
-            "target.restrict_size": "0x20000"
+            "target.restrict_size": "0x40000"
         },
         "NUCLEO_F429ZI": {
-            "target.restrict_size": "0x20000"
+            "target.restrict_size": "0x40000"
         },
         "UBLOX_EVK_ODIN_W2": {
-            "target.restrict_size": "0x20000"
+            "target.restrict_size": "0x40000"
         }
     },
     "config": {
