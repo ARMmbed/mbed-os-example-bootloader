@@ -18,7 +18,7 @@ mbed import mbed-os-example-bootloader
 cd mbed-os-example-bootloader
 ```
 
-## Set up application to be a bootloader
+## Preparing the bootloader
 
 All supported boards mentioned above are set up to build as a bootloader image. To add support for a new board, you must specify the size of the bootloader.
 
@@ -76,7 +76,7 @@ Image: .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader.bin
 
 It creates two binary files. The original uncombined image is in the output directory, <project-name>_application.bin, and the bootloader image is <project-name>.bin.
 
-When the build succeeds, you have created a bootloader for your target. This example defines the application file to be located at `/sd/mbed-os-example-blinky_application.bin` in the application config file ``mbed_app.json``. This is the application binary bootloader flashes and then jumps to.
+When the build succeeds, you have created a bootloader for your target. This example defines the application file to be located at `/sd/mbed-os-example-blinky_application.bin` in the bootloader's ``main.cpp``. This is the application binary that bootloader flashes and then jumps to. If you are using a different application, ensure that ``main.cpp`` is pointing to the correct path for the application.
 
 ## Set up application to use bootloader
 
@@ -84,7 +84,7 @@ When the build succeeds, you have created a bootloader for your target. This exa
 
 The next step is to build an application you can combine with your bootloader to create a loadable image. 
 
-1. Update your board to use the newly created bootloader image. To do this, set the target (replace `<TARGET_NAME>` with your target name) value `bootloader_img` to the file path of the bootloader image.
+1. Update your board to use the newly created bootloader image. To do this, you will need to modify the application's ``mbed_app.json`` file (if your application does not have a ``mbed_app.json`` file already, you will have to create one). Set the target (replace `<TARGET_NAME>` with your target name) value `bootloader_img` to the file path of the bootloader image.
 
 ```
     "target_overrides": {
@@ -110,10 +110,10 @@ The next step is to build an application you can combine with your bootloader to
 
 1. Connect the SD card to your computer.
 1. Copy the application binary (``<program name>_application.bin``, we defined it earlier as ``mbed-os-example-blinky_application.bin``) to the root of the SD card.
-1. Remove the SD card from your PC, and plug it into the mbed board.
+1. Remove the SD card from your PC. Ensure the CI test shield is attached to your device, and then plug the SD card into the CI test shield.
 1. Press the reset button to start the firmware update.
 
-If a terminal is open, the following prints:
+If a terminal is open, the following should print out on baud rate of 115200:
 
 ```
 Firmware update found
