@@ -2,10 +2,13 @@
 #include "SDBlockDevice.h"
 #include "FATFileSystem.h"
 
-#define UPDATE_FILE     "/sd/mbed-os-example-bootloader-blinky_application.bin"
+#define SD_MOUNT_PATH           "sd"
+#define FULL_UPDATE_FILE_PATH   "/" SD_MOUNT_PATH "/" MBED_CONF_APP_UPDATE_FILE
 
-SDBlockDevice sd(D11, D12, D13, D10);
-FATFileSystem fs("sd");
+//Pin order: MOSI, MISO, SCK, CS
+SDBlockDevice sd(MBED_CONF_APP_SD_CARD_MOSI, MBED_CONF_APP_SD_CARD_MISO,
+                 MBED_CONF_APP_SD_CARD_SCK, MBED_CONF_APP_SD_CARD_CS);
+FATFileSystem fs(SD_MOUNT_PATH);
 FlashIAP flash;
 
 void apply_update(FILE *file, uint32_t address);
@@ -15,14 +18,14 @@ int main()
     sd.init();
     fs.mount(&sd);
 
-    FILE *file = fopen(UPDATE_FILE, "rb");
+    FILE *file = fopen(FULL_UPDATE_FILE_PATH, "rb");
     if (file != NULL) {
         printf("Firmware update found\r\n");
 
         apply_update(file, POST_APPLICATION_ADDR);
 
         fclose(file);
-        remove(UPDATE_FILE);
+        remove(FULL_UPDATE_FILE_PATH);
     } else {
         printf("No update found to apply\r\n");
     }
