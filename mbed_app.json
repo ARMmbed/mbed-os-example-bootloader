@@ -36,8 +36,5 @@
             "target.restrict_size": "0x40000",
             "sd_card_cs": "D9"
         }
-    },
-    "config": {
-        "update_file": "\"/sd/mbed-os-example-blinky_application.bin\""
     }
 }
