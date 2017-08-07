@@ -2,7 +2,7 @@
     "config": {
         "update_file": {
             "help": "Path to the application update binary on the SD card",
-            "value": "\"mbed-os-example-blinky_application.bin\""
+            "value": "\"mbed-os-example-bootloader_application.bin\""
         },
         "sd_card_mosi": {
             "help": "MCU pin connected to the SD card's SPI MOSI pin",
