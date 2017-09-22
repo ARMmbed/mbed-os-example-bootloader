@@ -40,6 +40,11 @@ int main()
 
 void apply_update(FILE *file, uint32_t address)
 {
+    fseek(file, 0, SEEK_END);
+    long len = ftell(file);
+    printf("Firmware size is %ld bytes\r\n", len);
+    fseek(file, 0, SEEK_SET);
+  
     flash.init();
 
     const uint32_t page_size = flash.get_page_size();
@@ -47,6 +52,7 @@ void apply_update(FILE *file, uint32_t address)
     uint32_t addr = address;
     uint32_t next_sector = addr + flash.get_sector_size(addr);
     bool sector_erased = false;
+    size_t pages_flashed = 0;
     while (true) {
 
         // Read data for this page
@@ -69,7 +75,10 @@ void apply_update(FILE *file, uint32_t address)
         if (addr >= next_sector) {
             next_sector = addr + flash.get_sector_size(addr);
             sector_erased = false;
+        }
 
+        if (++pages_flashed % 3 == 0) {
+            printf("Flashed %ld / %ld bytes\r\n", ftell(file), len);
         }
     }
     delete[] page_buffer;
