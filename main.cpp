@@ -53,6 +53,7 @@ void apply_update(FILE *file, uint32_t address)
     uint32_t next_sector = addr + flash.get_sector_size(addr);
     bool sector_erased = false;
     size_t pages_flashed = 0;
+    uint32_t percent_done = 0;
     while (true) {
 
         // Read data for this page
@@ -78,9 +79,15 @@ void apply_update(FILE *file, uint32_t address)
         }
 
         if (++pages_flashed % 3 == 0) {
-            printf("Flashed %ld / %ld bytes\r\n", ftell(file), len);
+            uint32_t percent_done_new = ftell(file) * 100 / len;
+            if (percent_done != percent_done_new) {
+                percent_done = percent_done_new;
+                printf("Flashed %3ld%%\r", percent_done);
+            }
         }
     }
+    printf("Flashed 100%%\r\n", ftell(file), len);
+
     delete[] page_buffer;
 
     flash.deinit();
