@@ -2,7 +2,7 @@
 
 This example shows how to create a bootloader.
 
-To read more about the bootloader, please visit [bootloader tutorial](https://docs.mbed.com/docs/mbed-os-handbook/en/latest/advanced/bootloader/).
+To read more about the bootloader, please visit [bootloader tutorial](https://os.mbed.com/docs/latest/tutorials/bootloader.html).
 
 ## Required hardware
 * A supported target - [u-blox EVK-ODIN-W2](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/).
@@ -160,16 +160,4 @@ Starting application
 
 ## Troubleshooting
 
-1. Make sure `mbed-cli` is working correctly and its version is `>1.0.0`.
-
-    ```
-    mbed --version
-    ```
-
-    If not, you can update it:
-
-    ```
-    pip install mbed-cli --upgrade
-    ```
-
-2. If using Keil MDK, make sure you have a license installed. [MDK-Lite](http://www.keil.com/arm/mdk.asp) has a 32 KB restriction on code size.
+If you have problems, you can review the [documentation](https://os.mbed.com/docs/latest/tutorials/debugging.html) for suggestions on what could be wrong and how to fix it.
