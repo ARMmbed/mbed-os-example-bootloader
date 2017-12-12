@@ -2,10 +2,11 @@
 
 This example shows how to create a bootloader.
 
-To read more about the bootloader, please visit [bootloader tutorial](https://os.mbed.com/docs/latest/tutorials/bootloader.html).
+To read more about the bootloader, please visit the [bootloader tutorial](https://os.mbed.com/docs/latest/tutorials/bootloader.html).
 
 ## Required hardware
-* A supported target - [u-blox EVK-ODIN-W2](https://developer.mbed.org/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://developer.mbed.org/platforms/ST-Nucleo-F429ZI/) or [K64F](https://developer.mbed.org/platforms/FRDM-K64F/).
+
+* A supported target - [u-blox EVK-ODIN-W2](https://os.mbed.com/platforms/ublox-EVK-ODIN-W2/), [Nucleo F429ZI](https://os.mbed.com/platforms/ST-Nucleo-F429ZI/) or [K64F](https://os.mbed.com/platforms/FRDM-K64F/).
 * SD card.
 * If your supported target does not have an SD card port, you need a shield or breakout board with an SD card port that uses SPI pins.
 
@@ -19,14 +20,15 @@ cd mbed-os-example-bootloader
 ```
 
 ## Connecting the SD card
-This example uses the **onboard SD card port** for the K64F and the UBLOX_EVK_ODIN_W2.
+
+This example uses the **onboard SD card port** for the K64F and the u-blox EVK-ODIN-W2.
 
 Other targets use the following Arduino form-factor SPI pins by default:
+
 - `D11` - `MOSI`
 - `D12` - `MISO`
 - `D13` - `SCK`
 - `D10` - `CS`
-
 
 To use different SPI pins, you need to modify the `mbed_app.json` file. Add a key for your target to the `target_overrides` section with the following data (replace `<TARGET_NAME>` with your target's name):
 
@@ -138,8 +140,8 @@ After the build completes, the build system creates two binary images in the `BU
 
 Follow these steps to program the target with the combined bootloader and application image. You then can update the application from the SD card.
 
-1. Connect your mbed device to the computer over USB.
-1. Copy the combined bootloader and application binary file (named `<project-name>.bin` in the previous section) to the mbed device.
+1. Connect your Mbed device to the computer over USB.
+1. Copy the combined bootloader and application binary file (named `<project-name>.bin` in the previous section) to the Mbed device.
 1. Press the reset button to start the program.
 
 ### Program the application from the bootloader (load from SD card)
@@ -148,7 +150,7 @@ Follow these steps to program the target with the combined bootloader and applic
 
 1. Connect the SD card to your computer.
 1. Copy the update application binary (named `<project-name>_application.bin` in the previous section) to the root of the SD card.
-1. Remove the SD card from your PC, and connect it to your mbed (see the above section [Connecting the SD card](#connecting-the-sd-card))
+1. Remove the SD card from your PC, and connect it to your Mbed board (see the above section [Connecting the SD card](#connecting-the-sd-card)).
 1. Press the reset button to start the firmware update.
 
 If a terminal is open, the following prints at a baud rate of 9600:
