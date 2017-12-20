@@ -5,6 +5,10 @@
 #define SD_MOUNT_PATH           "sd"
 #define FULL_UPDATE_FILE_PATH   "/" SD_MOUNT_PATH "/" MBED_CONF_APP_UPDATE_FILE
 
+#if !defined(POST_APPLICATION_ADDR)
+#error "target.restrict_size must be set for your target in mbed_app.json"
+#endif
+
 //Pin order: MOSI, MISO, SCK, CS
 SDBlockDevice sd(MBED_CONF_APP_SD_CARD_MOSI, MBED_CONF_APP_SD_CARD_MISO,
                  MBED_CONF_APP_SD_CARD_SCK, MBED_CONF_APP_SD_CARD_CS);
