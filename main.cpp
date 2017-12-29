@@ -90,7 +90,7 @@ void apply_update(FILE *file, uint32_t address)
             }
         }
     }
-    printf("Flashed 100%%\r\n", ftell(file), len);
+    printf("Flashed 100%%\r\n");
 
     delete[] page_buffer;
 
