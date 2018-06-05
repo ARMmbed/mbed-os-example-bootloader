@@ -107,11 +107,11 @@ Image: .\BUILD\<TARGET_NAME>\ARM\mbed-os-example-bootloader.bin
 
 After the build completes, the build system creates two binary images in the `BUILD/<TARGET_NAME>/<TOOLCHAIN_NAME>` directory: `<project-name>.bin` and `<project-name>_application.bin`. `<project-name>.bin` is the padded bootloader (used for combining with applications). `<project-name>_application.bin` is the original unpadded bootloader.
 
-In this example, `main.cpp` defines the update binary for the bootloader as `mbed-os-example-blinky_application.bin` (specified under the macro `UPDATE_FILE`). The bootloader looks for this file in the root of the SD card, flashes it to memory and then jumps to the application.
+In this example, `main.cpp` defines the update binary for the bootloader as `mbed-os-example-blinky_application.bin` (specified under the config `update_file` in `mbed_app.json`). The bootloader looks for this file in the root of the SD card, flashes it to memory and then jumps to the application.
 
 ## Building the application with the bootloader
 
-The next step is to build an application you can combine with your bootloader to create a loadable image. 
+The next step is to build an application you can combine with your bootloader to create a loadable image.
 
 1. Instruct the build system to use the newly created padded bootloader image (named `<project-name>.bin` in the previous section). To do this, create a `target_overrides` section in your application's `mbed_app.json` file, and add a key for your target (see `<TARGET_NAME>` in the example below). If `mbed_app.json` does not already exist in your application, create one.
 
@@ -134,7 +134,7 @@ The next step is to build an application you can combine with your bootloader to
     mbed compile -m <TARGET_NAME> -t ARM
     ```
 
-After the build completes, the build system creates two binary images in the `BUILD/<TARGET_NAME>/<TOOLCHAIN_NAME>` directory: `<project-name>.bin` and `<project-name>_application.bin`. `<project-name>.bin` is the combined bootloader and application (suitable for flashing to the device's ROM directly). `<project-name>_application.bin` is the update binary (the one you place on the SD card).
+After the build completes, the build system creates two binary images in the `BUILD/<TARGET_NAME>/<TOOLCHAIN_NAME>` directory: `<project-name>.bin` and `<project-name>_application.bin`. `<project-name>.bin` is the combined bootloader and application (suitable for flashing to the device's ROM directly). `<project-name>_application.bin` is the update binary (the one you place on the SD card). By default the bootloader built in the previous step looks for an application built from the project `from mbed-os-example-blinky` and having the name `mbed-os-example-blinky_application.bin`.
 
 ### Program the application with the bootloader included
 
