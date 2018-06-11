@@ -113,6 +113,8 @@ In this example, `main.cpp` defines the update binary for the bootloader as `mbe
 
 The next step is to build an application you can combine with your bootloader to create a loadable image.
 
+<span class="tips">**Note:** Updating an application to use a bootloader currently does not work with the Arm Mbed Online Compiler because .bin and .hex files can't be uploaded.</span>
+
 1. Instruct the build system to use the newly created padded bootloader image (named `<project-name>.bin` in the previous section). To do this, create a `target_overrides` section in your application's `mbed_app.json` file, and add a key for your target (see `<TARGET_NAME>` in the example below). If `mbed_app.json` does not already exist in your application, create one.
 
 2. Set the target value `bootloader_img` in `mbed_app.json` to the file path of the padded bootloader image. For the below example, copy the padded bootloader image to the project directory.
