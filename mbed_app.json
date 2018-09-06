@@ -22,6 +22,9 @@
         }
     },
     "target_overrides": {
+        "*": {
+            "target.components_remove": ["SD"]
+        },
         "K64F": {
             "target.restrict_size": "0x40000",
             "sd_card_mosi": "PTE3",
