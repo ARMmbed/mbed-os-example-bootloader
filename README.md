@@ -1,4 +1,7 @@
-![](./resources/official_armmbed_example_badge.png)
+## Deprecation note!
+
+**Please note: This repository is deprecated and it is no longer actively maintained**.
+
 # Getting started with bootloader on mbed OS
 
 This example shows how to create a bootloader.
